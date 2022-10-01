@@ -120,11 +120,11 @@ install:
 ifeq ($(TYPE), a)
 	mkdir -p $(INC_INSTALL_DIR) 
 	cp -f $(BUILD_DIR)/$(TARGET_EXEC) $(LIB_INSTALL_DIR)
-	for u in $(INC_DIRS); do echo $$u; cp -f $$u $(INC_INSTALL_DIR); done
+	for u in $(INC_DIRS); do echo $$u; cp -r -f $$u $(INC_INSTALL_DIR); done
 else ifeq ($(TYPE), so)
 	mkdir -p $(INC_INSTALL_DIR) 
 	cp -f $(BUILD_DIR)/$(TARGET_EXEC) $(LIB_INSTALL_DIR)
-	for u in $(INC_DIRS); do echo $$u; cp -f $$u $(INC_INSTALL_DIR); done
+	for u in $(INC_DIRS); do echo $$u; cp -r -f $$u $(INC_INSTALL_DIR); done
 else 
 	mkdir -p $(BIN_INSTALL_DIR)
 	cp -f $(BUILD_DIR)/$(TARGET_EXEC) $(BIN_INSTALL_DIR)
