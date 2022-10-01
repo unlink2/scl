@@ -1,4 +1,4 @@
-TARGET_EXEC := scl
+TARGET_EXEC := libscl.so
 TEST_EXEC := test
 CC=gcc
 
@@ -7,7 +7,7 @@ LIB_INSTALL_DIR := /usr/local/lib
 INC_INSTALL_DIR := /usr/local/include/$(TARGET_EXEC)/
 
 # valid inputs: bin, a (static lib), so (shared lib), h (header only)
-TYPE := bin 
+TYPE := so
 
 BUILD_DIR := ./build
 BUILD_DIR_TEST := $(BUILD_DIR)/build_test
@@ -49,7 +49,7 @@ else  ifeq ($(TYPE), so)
 	$(CC) -shared $(OBJS) -o $@ $(LDFLAGS)
 else  ifeq ($(TYPE), h)
 	$(CC) -E $(INC_DIRS)/$(TARGET_EXEC) > $(BUILD_DIR)/$(TARGET_EXEC)  
-else 
+else
 	$(CC) $(OBJS) -o $@ $(LDFLAGS)
 endif 
 
@@ -117,11 +117,11 @@ clean:
 # installs the binary, shared library or static library  
 .PHONY: install 
 install:
-ifeq ($(BIN), a)
+ifeq ($(TYPE), a)
 	mkdir -p $(INC_INSTALL_DIR) 
 	cp -f $(BUILD_DIR)/$(TARGET_EXEC) $(LIB_INSTALL_DIR)
 	for u in $(INC_DIRS); do echo $$u; cp -f $$u $(INC_INSTALL_DIR); done
-else ifeq ($(BIN), so)
+else ifeq ($(TYPE), so)
 	mkdir -p $(INC_INSTALL_DIR) 
 	cp -f $(BUILD_DIR)/$(TARGET_EXEC) $(LIB_INSTALL_DIR)
 	for u in $(INC_DIRS); do echo $$u; cp -f $$u $(INC_INSTALL_DIR); done

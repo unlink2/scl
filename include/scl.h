@@ -6,6 +6,4 @@
  * for the project
  */
 
-#error "Rename to <porjectname.h>
-
 #endif
