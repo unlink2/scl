@@ -1,0 +1,16 @@
+#ifndef SCL_ALLOC_H_
+#define SCL_ALLOC_H_
+
+#include "types.h"
+
+typedef void *(*SclMalloc)(usize);
+typedef void (*SclFree)(void *);
+
+typedef struct SclAlloc {
+  SclMalloc malloc;
+  SclFree free;
+} SclAlloc;
+
+SclAlloc scl_alloc_init(SclMalloc malloc, SclFree free);
+
+#endif

@@ -12,5 +12,6 @@
 #include "sclstrbuf.h"
 #include "sclmem.h"
 #include "sclrand.h"
+#include "sclalloc.h"
 
 #endif
