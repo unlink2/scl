@@ -7,5 +7,6 @@
  */
 
 #include "foundation.h"
+#include "scllog.h"
 
 #endif
