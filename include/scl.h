@@ -8,5 +8,7 @@
 
 #include "foundation.h"
 #include "scllog.h"
+#include "sclstr.h"
+#include "sclstrbuf.h"
 
 #endif
