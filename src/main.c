@@ -23,9 +23,10 @@ int main(int argc, char **argv) {
 #ifdef TEST
 
 #include "macros.h"
+#include "sclstrbuf.h"
 
 int main(int argc, char **argv) {
-  const struct CMUnitTest tests[] = {NULL};
+  const struct CMUnitTest tests[] = {cmocka_unit_test(test_strbuf_resize)};
   return cmocka_run_group_tests(tests, NULL, NULL);
 }
 
