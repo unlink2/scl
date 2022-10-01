@@ -10,5 +10,7 @@
 #include "scllog.h"
 #include "sclstr.h"
 #include "sclstrbuf.h"
+#include "sclmem.h"
+#include "sclrand.h"
 
 #endif
