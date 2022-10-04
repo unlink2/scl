@@ -1,6 +1,7 @@
 #include "sclstr.h"
 #include <stdlib.h>
 #include <string.h>
+#include "sclmem.h"
 
 Str str_init(char *s, const usize len) { // NOLINT
   Str n = {s, len};
@@ -28,7 +29,7 @@ char *str_from(const char *d) {
 
 char *str_to_str(const Str s) {
   char *n = malloc(s.len + 1);
-  memset(n, 0, s.len + 1);
+  scl_memset(n, 0, s.len + 1);
   strncpy(n, s.raw, s.len);
 
   return n;

@@ -2,14 +2,15 @@
 #include "macros.h"
 #include <stdlib.h>
 #include <string.h>
+#include "sclmem.h"
 
 StrBuffer strbuf_init(usize len) {
   StrBuffer buffer;
-  memset(&buffer, 0, sizeof(StrBuffer));
+  scl_memset(&buffer, 0, sizeof(StrBuffer));
 
   buffer.str.raw = malloc(len);
   buffer.str.len = 0;
-  memset(buffer.str.raw, 0, len);
+  scl_memset(buffer.str.raw, 0, len);
 
   buffer.cap = len;
   return buffer;
@@ -21,7 +22,7 @@ void strbuf_resize(StrBuffer *buffer, usize len) {
 
   // new buffeer
   buffer->str.raw = malloc(len);
-  memset(buffer->str.raw, 0, len);
+  scl_memset(buffer->str.raw, 0, len);
   buffer->cap = len;
 
   if (old) {
