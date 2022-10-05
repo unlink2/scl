@@ -1,8 +1,8 @@
 
-# template
+# scl
 
-![](https://github.com/unlink2/template/actions/workflows/build.yml/badge.svg)
-![](https://github.com/unlink2/template/actions/workflows/test.yml/badge.svg)
+![](https://github.com/unlink2/scl/actions/workflows/build.yml/badge.svg)
+![](https://github.com/unlink2/scl/actions/workflows/test.yml/badge.svg)
 
 ## Table of content
 
@@ -39,4 +39,4 @@ Please make sure that all existing tests pass before submitting a pull request.
 
 ## TODO
 
-- Replace template with project name in README.md and makefile
+- Replace scl with project name in README.md and makefile
