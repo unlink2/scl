@@ -1,10 +1,11 @@
+NAME := scl
 TARGET_EXEC := libscl.so
 TEST_EXEC := test
 CC=gcc
 
 BIN_INSTALL_DIR := /usr/local/bin
 LIB_INSTALL_DIR := /usr/local/lib 
-INC_INSTALL_DIR := /usr/local/include/$(TARGET_EXEC)/
+INC_INSTALL_DIR := /usr/local/include/$(NAME)/
 
 # valid inputs: bin, a (static lib), so (shared lib), h (header only)
 TYPE := so
@@ -120,11 +121,11 @@ install:
 ifeq ($(TYPE), a)
 	mkdir -p $(INC_INSTALL_DIR) 
 	cp -f $(BUILD_DIR)/$(TARGET_EXEC) $(LIB_INSTALL_DIR)
-	for u in $(INC_DIRS); do echo $$u; cp -r -f $$u $(INC_INSTALL_DIR); done
+	for u in $(INC_DIRS)/*; do echo $$u; cp -r -f $$u $(INC_INSTALL_DIR); done
 else ifeq ($(TYPE), so)
 	mkdir -p $(INC_INSTALL_DIR) 
 	cp -f $(BUILD_DIR)/$(TARGET_EXEC) $(LIB_INSTALL_DIR)
-	for u in $(INC_DIRS); do echo $$u; cp -r -f $$u $(INC_INSTALL_DIR); done
+	for u in $(INC_DIRS)/*; do echo $$u; cp -r -f $$u $(INC_INSTALL_DIR); done
 else 
 	mkdir -p $(BIN_INSTALL_DIR)
 	cp -f $(BUILD_DIR)/$(TARGET_EXEC) $(BIN_INSTALL_DIR)
