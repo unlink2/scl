@@ -31,7 +31,7 @@ SclIni scl_ini_init(SclOnIniVal on_val, SclOnIniSec on_sec) {
 }
 
 SclIniRes scl_ini_parse(SclIni *ini, Str data) {
-  SclIniRes res = {0, SCL_OK};
+  SclIniRes res = {0, SCL_OK, 0};
   SclIniRes r;
   do {
     r = scl_ini_next(ini, data);
@@ -49,7 +49,7 @@ SclIniRes scl_ini_next(SclIni *ini, Str data) {
   const char sep = '=';
   const char sec_start = '[';
   const char sec_end = ']';
-  SclIniRes res = {0, SCL_OK};
+  SclIniRes res = {0, SCL_OK, 0};
 
   char *current = data.raw;
 
@@ -87,7 +87,7 @@ SclIniRes scl_ini_next(SclIni *ini, Str data) {
       value.len++;
       current++;
     }
-    ini->on_val(ini, key, value);
+    res.err = ini->on_val(ini, key, value);
   } else {
     Str section;
     section.raw = current;
@@ -104,7 +104,7 @@ SclIniRes scl_ini_next(SclIni *ini, Str data) {
     current++;
     section.len++;
 
-    ini->on_sec(ini, section);
+    res.err = ini->on_sec(ini, section);
   }
   res.parsed = current - data.raw;
   return res;

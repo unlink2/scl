@@ -5,8 +5,8 @@
 #include "error.h"
 
 typedef struct SclIni SclIni;
-typedef void (*SclOnIniVal)(SclIni *ini, Str key, Str val);
-typedef void (*SclOnIniSec)(SclIni *ini, Str name);
+typedef int (*SclOnIniVal)(SclIni *ini, Str key, Str val);
+typedef int (*SclOnIniSec)(SclIni *ini, Str name);
 
 typedef struct SclIni {
   SclOnIniVal on_val;
