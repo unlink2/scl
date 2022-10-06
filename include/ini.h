@@ -4,8 +4,9 @@
 #include "sclstr.h"
 #include "error.h"
 
-typedef void (*SclOnIniVal)(Str key, Str val);
-typedef void (*SclOnIniSec)(Str name);
+typedef struct SclIni SclIni;
+typedef void (*SclOnIniVal)(SclIni *ini, Str key, Str val);
+typedef void (*SclOnIniSec)(SclIni *ini, Str name);
 
 typedef struct SclIni {
   SclOnIniVal on_val;
