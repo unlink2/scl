@@ -65,7 +65,7 @@ SclIniRes scl_ini_next(SclIni *ini, Str data) {
   if (*current != sec_start) {
 
     Str key;
-    key.raw = data.raw;
+    key.raw = current;
     key.len = 0;
 
     while (!is_end(*current) && *current != sep && !str_is_end(data, current)) {
@@ -87,7 +87,10 @@ SclIniRes scl_ini_next(SclIni *ini, Str data) {
       value.len++;
       current++;
     }
-    res.usr_err = ini->on_val(ini, key, value);
+
+    if (key.len != 0) {
+      res.usr_err = ini->on_val(ini, key, value);
+    }
   } else {
     Str section;
     section.raw = current;
@@ -104,9 +107,14 @@ SclIniRes scl_ini_next(SclIni *ini, Str data) {
     current++;
     section.len++;
 
-    res.usr_err = ini->on_sec(ini, section);
+    if (section.len != 0) {
+      res.usr_err = ini->on_sec(ini, section);
+    }
   }
   res.parsed = current - data.raw;
+  if (res.usr_err) {
+    res.err = SCL_ERR_USR;
+  }
   return res;
 }
 
