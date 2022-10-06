@@ -87,7 +87,7 @@ SclIniRes scl_ini_next(SclIni *ini, Str data) {
       value.len++;
       current++;
     }
-    res.err = ini->on_val(ini, key, value);
+    res.usr_err = ini->on_val(ini, key, value);
   } else {
     Str section;
     section.raw = current;
@@ -104,7 +104,7 @@ SclIniRes scl_ini_next(SclIni *ini, Str data) {
     current++;
     section.len++;
 
-    res.err = ini->on_sec(ini, section);
+    res.usr_err = ini->on_sec(ini, section);
   }
   res.parsed = current - data.raw;
   return res;
@@ -122,7 +122,7 @@ typedef struct TestSclIni {
   char *section;
 } TestSclIni;
 
-void test_on_value(SclIni *ini, Str key, Str value) {
+int test_on_value(SclIni *ini, Str key, Str value) {
   TestSclIni *i = (TestSclIni *)ini;
 
   if (i->key != NULL) {
@@ -134,15 +134,19 @@ void test_on_value(SclIni *ini, Str key, Str value) {
     assert_int_equal(strlen(i->value), value.len);
     assert_true(str_eq_raw(value, i->value));
   }
+
+  return 0;
 }
 
-void test_on_section(SclIni *ini, Str sec) {
+int test_on_section(SclIni *ini, Str sec) {
   TestSclIni *i = (TestSclIni *)ini;
 
   if (i->section != NULL) {
     assert_int_equal(strlen(i->section), sec.len);
     assert_true(str_eq_raw(sec, i->section));
   }
+
+  return 0;
 }
 
 void test_ini_parse(void **state) {

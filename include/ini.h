@@ -17,6 +17,7 @@ typedef struct SclIniRes {
   // hoow many bytes were parsed?
   usize parsed;
   SclError err;
+  int usr_err;
 } SclIniRes;
 
 SclIni scl_ini_init(SclOnIniVal on_val, SclOnIniSec on_sec);
