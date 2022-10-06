@@ -47,3 +47,5 @@ bool str_starts_with_raw(const Str s, char *with) {
 
   return str_eq(s1, s2);
 }
+
+bool str_is_end(const Str s, const char *p) { return s.raw + s.len == p; }

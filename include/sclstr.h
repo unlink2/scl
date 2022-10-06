@@ -17,6 +17,9 @@ bool str_eq(const Str left, const Str right);
 
 bool str_eq_raw(const Str left, char *right);
 
+// Returns whether the char pointer is the end of the Str
+bool str_is_end(const Str s, const char *p);
+
 // create an owned C string copy from the input string
 char *str_from(const char *d);
 

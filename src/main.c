@@ -22,11 +22,11 @@ int main(int argc, char **argv) {
  */
 #ifdef TEST
 
-#include "macros.h"
-#include "sclstrbuf.h"
+#include "scl.h"
 
 int main(int argc, char **argv) {
-  const struct CMUnitTest tests[] = {cmocka_unit_test(test_strbuf_resize)};
+  const struct CMUnitTest tests[] = {cmocka_unit_test(test_strbuf_resize),
+                                     cmocka_unit_test(test_ini_parse)};
   return cmocka_run_group_tests(tests, NULL, NULL);
 }
 

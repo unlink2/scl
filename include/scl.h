@@ -13,5 +13,8 @@
 #include "sclmem.h"
 #include "sclrand.h"
 #include "sclalloc.h"
+#include "types.h"
+#include "macros.h"
+#include "ini.h"
 
 #endif
