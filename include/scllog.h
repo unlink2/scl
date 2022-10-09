@@ -1,6 +1,9 @@
 #ifndef SCLLOG_H_
 #define SCLLOG_H_
 
+#define str_fmt "%.*s"
+#define str_out(str) str.len, str.raw
+
 typedef enum LogLevel { OUTPUT, ERROR, INFO, DEBUG, LOG_LEVEL_LEN } LogLevel;
 
 void scl_log_set_level(LogLevel level);
