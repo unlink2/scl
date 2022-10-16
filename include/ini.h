@@ -11,6 +11,7 @@ typedef int (*SclOnIniSec)(SclIni *ini, Str name);
 typedef struct SclIni {
   SclOnIniVal on_val;
   SclOnIniSec on_sec;
+  Str section;
 } SclIni;
 
 typedef struct SclIniRes {

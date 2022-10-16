@@ -27,6 +27,8 @@ char *skip_comment(char *input) {
 SclIni scl_ini_init(SclOnIniVal on_val, SclOnIniSec on_sec) {
   SclIni ini = {on_val, on_sec};
 
+  ini.section = str_init("[default]", 9);
+
   return ini;
 }
 
@@ -108,6 +110,7 @@ SclIniRes scl_ini_next(SclIni *ini, Str data) {
     section.len++;
 
     if (section.len != 0) {
+      ini->section = section;
       res.usr_err = ini->on_sec(ini, section);
     }
   }
@@ -173,6 +176,7 @@ void test_ini_parse(void **state) {
     SclIniRes r = scl_ini_next((SclIni *)&i, test);
     assert_int_equal(SCL_OK, r.err);
     assert_int_equal(strlen(test.raw), r.parsed);
+    assert_true(str_eq_raw(i.ini.section, "[default]"));
   }
   // ok section
   {
@@ -189,6 +193,7 @@ void test_ini_parse(void **state) {
     SclIniRes r = scl_ini_next((SclIni *)&i, test);
     assert_int_equal(SCL_OK, r.err);
     assert_int_equal(strlen(test.raw), r.parsed);
+    assert_true(str_eq_raw(i.ini.section, "[test]"));
   }
 
   // fail value
