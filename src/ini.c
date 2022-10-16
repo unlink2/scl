@@ -24,10 +24,26 @@ char *skip_comment(char *input) {
   return input;
 }
 
+int scl_ini_on_value_default(SclIni *ini, Str key, Str vale) {
+  return 0;
+}
+
+
+int scl_ini_on_section_default(SclIni *ini, Str section) {
+  return 0;
+}
+
 SclIni scl_ini_init(SclOnIniVal on_val, SclOnIniSec on_sec) {
   SclIni ini = {on_val, on_sec};
 
   ini.section = str_init("[default]", 9);
+
+  if (ini.on_val == NULL) {
+    ini.on_val = scl_ini_on_value_default;
+  }
+  if (ini.on_sec == NULL) {
+    ini.on_sec = scl_ini_on_section_default;
+  }
 
   return ini;
 }
