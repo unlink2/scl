@@ -4,6 +4,8 @@
 #define str_fmt "%.*s"
 #define str_out(str) str.len, str.raw
 
+#include <stdio.h>
+
 #define sclerr stderr 
 #define sclout stdout 
 #define sclin stdin
