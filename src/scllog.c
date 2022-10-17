@@ -19,3 +19,6 @@ int scl_log_fprintf(void *f, const LogLevel level, const char *format, ...) {
 
   return len;
 }
+void *scl_err() { return stderr; }
+void *scl_out() { return stdout; }
+void *scl_in() { return stdin; }

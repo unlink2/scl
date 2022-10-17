@@ -13,4 +13,6 @@ typedef struct SclAlloc {
 
 SclAlloc scl_alloc_init(SclMalloc malloc, SclFree free);
 
+SclAlloc scl_default_alloc();
+
 #endif

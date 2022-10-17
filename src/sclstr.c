@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "sclmem.h"
+#include "sclalloc.h"
 
 Str str_init(char *s, const usize len) { // NOLINT
   Str n = {s, len};
@@ -22,13 +23,13 @@ bool str_eq_raw(const Str left, char *right) {
 }
 
 char *str_from(const char *d) {
-  char *s = malloc(strlen(d) + 1);
+  char *s = scl_default_alloc().malloc(strlen(d) + 1);
   strncpy(s, d, strlen(d));
   return s;
 }
 
 char *str_to_str(const Str s) {
-  char *n = malloc(s.len + 1);
+  char *n = scl_default_alloc().malloc(s.len + 1);
   scl_memset(n, 0, s.len + 1);
   strncpy(n, s.raw, s.len);
 

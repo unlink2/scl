@@ -4,11 +4,12 @@
 #include <string.h>
 #include "sclmem.h"
 
-StrBuffer strbuf_init(usize len) {
+StrBuffer strbuf_init_alloc(usize len, SclAlloc alloc) {
   StrBuffer buffer;
   scl_memset(&buffer, 0, sizeof(StrBuffer));
 
-  buffer.str.raw = malloc(len);
+  buffer.alloc = alloc;
+  buffer.str.raw = buffer.alloc.malloc(len);
   buffer.str.len = 0;
   scl_memset(buffer.str.raw, 0, len);
 
@@ -16,18 +17,22 @@ StrBuffer strbuf_init(usize len) {
   return buffer;
 }
 
+StrBuffer strbuf_init(usize len) {
+  return strbuf_init_alloc(len, scl_default_alloc());
+}
+
 void strbuf_resize(StrBuffer *buffer, usize len) {
   char *old = buffer->str.raw;
   usize old_len = buffer->cap;
 
   // new buffeer
-  buffer->str.raw = malloc(len);
+  buffer->str.raw = buffer->alloc.malloc(len);
   scl_memset(buffer->str.raw, 0, len);
   buffer->cap = len;
 
   if (old) {
     memcpy(buffer->str.raw, old, MIN(old_len, len));
-    free(old);
+    buffer->alloc.free(old);
   }
 }
 
@@ -55,7 +60,7 @@ void strbuf_clear(StrBuffer *buffer) { buffer->str.len = 0; }
 
 void strbuf_free(StrBuffer *buffer) {
   if (buffer->str.raw) {
-    free(buffer->str.raw);
+    buffer->alloc.free(buffer->str.raw);
   }
 }
 

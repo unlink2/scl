@@ -2,6 +2,7 @@
 #define SCLBUFFER_H_
 
 #include "error.h"
+#include "sclalloc.h"
 #include "sclstr.h"
 #include "types.h"
 
@@ -13,8 +14,11 @@ typedef struct StrBuffer {
   // where is the buffer currently at?
   usize cap;
   SclError err;
+
+  SclAlloc alloc;
 } StrBuffer;
 
+StrBuffer strbuf_init_alloc(usize len, SclAlloc alloc);
 StrBuffer strbuf_init(usize len);
 
 // Resize buffer and copy from old to new location
