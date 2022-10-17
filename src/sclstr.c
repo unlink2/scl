@@ -22,19 +22,29 @@ bool str_eq_raw(const Str left, char *right) {
   return str_eq(left, str_init(right, strlen(right)));
 }
 
-char *str_from(const char *d) {
-  char *s = scl_default_alloc().malloc(strlen(d) + 1);
+char *str_from_alloc(const char *d, SclAlloc a) {
+  char *s = a.malloc(strlen(d) + 1);
   strncpy(s, d, strlen(d));
   return s;
 }
 
-char *str_to_str(const Str s) {
-  char *n = scl_default_alloc().malloc(s.len + 1);
+char *str_from(const char *d) { return str_from_alloc(d, scl_default_alloc()); }
+
+char *str_to_str_alloc(const Str s, SclAlloc a) {
+  char *n = a.malloc(s.len + 1);
   scl_memset(n, 0, s.len + 1);
   strncpy(n, s.raw, s.len);
 
   return n;
 }
+
+char *str_to_str(const Str s) {
+  return str_to_str_alloc(s, scl_default_alloc());
+}
+
+void str_free_alloc(const Str s, SclAlloc a) { a.free(s.raw); }
+
+void str_free(const Str s) { str_free_alloc(s, scl_default_alloc()); }
 
 bool str_starts_with_raw(const Str s, char *with) {
   usize len = strlen(with);

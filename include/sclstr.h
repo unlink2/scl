@@ -1,6 +1,7 @@
 #ifndef SCLSTR_H_
 #define SCLSTR_H_
 
+#include "sclalloc.h"
 #include "types.h"
 
 typedef struct Str {
@@ -21,10 +22,14 @@ bool str_eq_raw(const Str left, char *right);
 bool str_is_end(const Str s, const char *p);
 
 // create an owned C string copy from the input string
+char *str_from_alloc(const char *d, SclAlloc a);
 char *str_from(const char *d);
 
 // convert a str to a malloced c-string
 char *str_to_str(const Str s);
+
+void str_free_alloc(const Str s, SclAlloc a);
+void str_free(const Str s);
 
 bool str_starts_with_raw(const Str s, char *with);
 
