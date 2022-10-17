@@ -26,6 +26,7 @@ char *str_from_alloc(const char *d, SclAlloc a);
 char *str_from(const char *d);
 
 // convert a str to a malloced c-string
+char *str_to_str_alloc(const Str s, SclAlloc a);
 char *str_to_str(const Str s);
 
 void str_free_alloc(const Str s, SclAlloc a);
