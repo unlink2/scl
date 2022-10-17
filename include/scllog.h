@@ -4,10 +4,9 @@
 #define str_fmt "%.*s"
 #define str_out(str) str.len, str.raw
 
-
-#define sclerr scl_err(); 
-#define sclout scl_ou
-#define sclin scl_in(
+#define sclerr scl_err()
+#define sclout scl_out()
+#define sclin scl_in()
 
 typedef enum LogLevel { OUTPUT, ERROR, INFO, DEBUG, LOG_LEVEL_LEN } LogLevel;
 
