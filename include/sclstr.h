@@ -34,4 +34,8 @@ void str_free(const Str s);
 
 bool str_starts_with_raw(const Str s, char *with);
 
+usize scl_strlen(const char *str);
+char *scl_strncpy(char *d, const char *s, usize l);
+i32 scl_strncmp(const char *d, const char *s, usize l);
+
 #endif

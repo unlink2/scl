@@ -24,14 +24,9 @@ char *skip_comment(char *input) {
   return input;
 }
 
-int scl_ini_on_value_default(SclIni *ini, Str key, Str vale) {
-  return 0;
-}
+int scl_ini_on_value_default(SclIni *ini, Str key, Str vale) { return 0; }
 
-
-int scl_ini_on_section_default(SclIni *ini, Str section) {
-  return 0;
-}
+int scl_ini_on_section_default(SclIni *ini, Str section) { return 0; }
 
 SclIni scl_ini_init(SclOnIniVal on_val, SclOnIniSec on_sec) {
   SclIni ini = {on_val, on_sec};
@@ -153,12 +148,12 @@ int test_on_value(SclIni *ini, Str key, Str value) {
   TestSclIni *i = (TestSclIni *)ini;
 
   if (i->key != NULL) {
-    assert_int_equal(strlen(i->key), key.len);
+    assert_int_equal(scl_strlen(i->key), key.len);
     assert_true(str_eq_raw(key, i->key));
   }
 
   if (i->value != NULL) {
-    assert_int_equal(strlen(i->value), value.len);
+    assert_int_equal(scl_strlen(i->value), value.len);
     assert_true(str_eq_raw(value, i->value));
   }
 
@@ -169,7 +164,7 @@ int test_on_section(SclIni *ini, Str sec) {
   TestSclIni *i = (TestSclIni *)ini;
 
   if (i->section != NULL) {
-    assert_int_equal(strlen(i->section), sec.len);
+    assert_int_equal(scl_strlen(i->section), sec.len);
     assert_true(str_eq_raw(sec, i->section));
   }
 
@@ -181,7 +176,7 @@ void test_ini_parse(void **state) {
   {
     Str test;
     test.raw = "key=value";
-    test.len = strlen(test.raw);
+    test.len = scl_strlen(test.raw);
 
     TestSclIni i;
     i.ini = scl_ini_init(test_on_value, test_on_section);
@@ -191,14 +186,14 @@ void test_ini_parse(void **state) {
 
     SclIniRes r = scl_ini_next((SclIni *)&i, test);
     assert_int_equal(SCL_OK, r.err);
-    assert_int_equal(strlen(test.raw), r.parsed);
+    assert_int_equal(scl_strlen(test.raw), r.parsed);
     assert_true(str_eq_raw(i.ini.section, "[default]"));
   }
   // ok section
   {
     Str test;
     test.raw = "[test]";
-    test.len = strlen(test.raw);
+    test.len = scl_strlen(test.raw);
 
     TestSclIni i;
     i.ini = scl_ini_init(test_on_value, test_on_section);
@@ -208,7 +203,7 @@ void test_ini_parse(void **state) {
 
     SclIniRes r = scl_ini_next((SclIni *)&i, test);
     assert_int_equal(SCL_OK, r.err);
-    assert_int_equal(strlen(test.raw), r.parsed);
+    assert_int_equal(scl_strlen(test.raw), r.parsed);
     assert_true(str_eq_raw(i.ini.section, "[test]"));
   }
 
@@ -216,7 +211,7 @@ void test_ini_parse(void **state) {
   {
     Str test;
     test.raw = "key";
-    test.len = strlen(test.raw);
+    test.len = scl_strlen(test.raw);
 
     TestSclIni i;
     i.ini = scl_ini_init(test_on_value, test_on_section);
@@ -228,7 +223,7 @@ void test_ini_parse(void **state) {
   {
     Str test;
     test.raw = "[test";
-    test.len = strlen(test.raw);
+    test.len = scl_strlen(test.raw);
 
     TestSclIni i;
     i.ini = scl_ini_init(test_on_value, test_on_section);
@@ -240,7 +235,7 @@ void test_ini_parse(void **state) {
   {
     Str test;
     test.raw = "[test]\nkey=value\ntest=123\n # comment\n scl=test";
-    test.len = strlen(test.raw);
+    test.len = scl_strlen(test.raw);
 
     TestSclIni i;
     i.ini = scl_ini_init(test_on_value, test_on_section);
@@ -250,7 +245,7 @@ void test_ini_parse(void **state) {
 
     SclIniRes r = scl_ini_parse((SclIni *)&i, test);
     assert_int_equal(SCL_OK, r.err);
-    assert_int_equal(strlen(test.raw), r.parsed);
+    assert_int_equal(scl_strlen(test.raw), r.parsed);
   }
 }
 
