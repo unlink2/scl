@@ -31,7 +31,7 @@ void strbuf_resize(StrBuffer *buffer, usize len) {
   buffer->cap = len;
 
   if (old) {
-    memcpy(buffer->str.raw, old, MIN(old_len, len));
+    scl_memcpy(buffer->str.raw, old, MIN(old_len, len));
     buffer->alloc.free(old);
   }
 }
