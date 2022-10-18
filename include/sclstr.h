@@ -38,4 +38,6 @@ usize scl_strlen(const char *str);
 char *scl_strncpy(char *d, const char *s, usize l);
 i32 scl_strncmp(const char *d, const char *s, usize l);
 
+i64 str_to_i64(const Str s, const i32 base);
+
 #endif

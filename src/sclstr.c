@@ -68,3 +68,10 @@ char *scl_strncpy(char *d, const char *s, usize l) { return strncpy(d, s, l); }
 i32 scl_strncmp(const char *d, const char *s, usize l) {
   return strncmp(d, s, l);
 }
+
+i64 str_to_i64(const Str so, const i32 base) {
+  char *tmp = str_to_str(so);
+  i64 r = strtol(tmp, NULL, base);
+  scl_default_alloc().free(tmp);
+  return r;
+}
