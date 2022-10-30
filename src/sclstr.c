@@ -69,13 +69,25 @@ i32 scl_strncmp(const char *d, const char *s, usize l) {
   return strncmp(d, s, l);
 }
 
-i64 str_to_i64_alloc(const Str so, const i32 base, SclAlloc alloc) {
+i64 str_to_i64_alloc(const Str so, const i32 base, SclError *err,
+                     SclAlloc alloc) {
   char *tmp = str_to_str_alloc(so, alloc);
-  i64 r = strtol(tmp, NULL, base);
+  char *end = NULL;
+  i64 r = strtol(tmp, &end, base);
+
+  // handle errors if  we have an error ptr
+  if (err) {
+    if (end == NULL || end == tmp) {
+      *err = SCL_ERR_STR_TO_I64;
+    } else {
+      *err = SCL_OK;
+    }
+  }
+
   alloc.free(tmp);
   return r;
 }
 
-i64 str_to_i64(const Str so, const i32 base) {
-  return str_to_i64_alloc(so, base, scl_default_alloc());
+i64 str_to_i64(const Str so, const i32 base, SclError *err) {
+  return str_to_i64_alloc(so, base, err, scl_default_alloc());
 }

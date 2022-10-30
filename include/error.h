@@ -8,7 +8,8 @@ typedef enum SclError {
   SCL_ERR_FILE_OPEN,
   SCL_ERR_INI_NO_VALUE,
   SCL_ERR_INI_UNTERMINATED_SECTION,
-  SCL_ERR_USR
+  SCL_ERR_USR,
+  SCL_ERR_STR_TO_I64
 } SclError;
 
 char *scl_error_to_str(SclError err);

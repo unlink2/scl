@@ -3,6 +3,7 @@
 
 #include "sclalloc.h"
 #include "types.h"
+#include "error.h"
 
 typedef struct Str {
   char *raw;
@@ -38,7 +39,8 @@ usize scl_strlen(const char *str);
 char *scl_strncpy(char *d, const char *s, usize l);
 i32 scl_strncmp(const char *d, const char *s, usize l);
 
-i64 str_to_i64_alloc(const Str so, const i32 base, SclAlloc alloc);
-i64 str_to_i64(const Str s, const i32 base);
+i64 str_to_i64_alloc(const Str so, const i32 base, SclError *error,
+                     SclAlloc alloc);
+i64 str_to_i64(const Str s, const i32 base, SclError *error);
 
 #endif
