@@ -18,4 +18,10 @@ void *scl_err();
 void *scl_out();
 void *scl_in();
 
+#define scl_log_(level, format, ...) scl_log_fprintf(sclerr, level, __VA_ARGS__)
+#define scl_log_debug(format, ...) scl_log_(DEBUG, format, __VA_ARGS__)
+#define scl_log_output(format, ...) scl_log_(OUTPUT, format, __VA_ARGS__)
+#define scl_log_info(format, ...) scl_log_(INFO, format, __VA_ARGS__)
+#define scl_log_error(format, ...) scl_log_(ERROR, format, __VA_ARGS__)
+
 #endif
