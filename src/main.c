@@ -21,6 +21,7 @@ int scl_test_main(int argc, char **argv) {
  * When built with test
  */
 #ifdef TEST
+#ifdef SCL_TEST
 
 #include "scl/scl.h"
 
@@ -30,4 +31,5 @@ int main(int argc, char **argv) {
   return cmocka_run_group_tests(tests, NULL, NULL);
 }
 
+#endif
 #endif

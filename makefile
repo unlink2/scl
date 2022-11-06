@@ -69,7 +69,7 @@ build:
 # Build test task
 .PHONY: build_test
 build_test: 
-	make EX_CC_FLAGS=-DTEST=1 EX_LD_FLAGS=-lcmocka TARGET_EXEC=$(TEST_EXEC) TYPE=bin 
+	make EX_CC_FLAGS="-DTEST=1 -DSCL_TEST=1" EX_LD_FLAGS=-lcmocka TARGET_EXEC=$(TEST_EXEC) TYPE=bin 
 
 .PHONY: test 
 test: 
