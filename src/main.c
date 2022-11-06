@@ -21,15 +21,17 @@ int scl_test_main(int argc, char **argv) {
  * When built with test
  */
 #ifdef TEST
-#ifdef SCL_TEST
 
 #include "scl/scl.h"
 
+#ifdef SCL_TEST
 int main(int argc, char **argv) {
+#else
+int scl_test_main(int argc, char **argv) {
+#endif
   const struct CMUnitTest tests[] = {cmocka_unit_test(test_strbuf_resize),
                                      cmocka_unit_test(test_ini_parse)};
   return cmocka_run_group_tests(tests, NULL, NULL);
 }
 
-#endif
 #endif
