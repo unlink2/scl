@@ -1,7 +1,7 @@
 #ifndef SCL_MEM_H_
 #define SCL_MEM_H_
 
-#include "types.h"
+#include "scl/types.h"
 
 void *scl_memcpy(void *dest, const void *src, usize n);
 

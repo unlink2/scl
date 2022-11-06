@@ -1,4 +1,4 @@
-#include "sclrand.h"
+#include "scl/sclrand.h"
 
 static u32 seed_;
 

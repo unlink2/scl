@@ -1,4 +1,4 @@
-#include "arena.h"
+#include "scl/arena.h"
 
 #define align(n) ((n) + (sizeof(usize) - ((n) % sizeof(usize))))
 

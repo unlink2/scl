@@ -1,8 +1,8 @@
-#include "sclstr.h"
+#include "scl/sclstr.h"
 #include <stdlib.h>
 #include <string.h>
-#include "sclmem.h"
-#include "sclalloc.h"
+#include "scl/sclmem.h"
+#include "scl/sclalloc.h"
 
 Str str_init(char *s, const usize len) { // NOLINT
   Str n = {s, len};

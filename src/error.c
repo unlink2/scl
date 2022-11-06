@@ -1,4 +1,4 @@
-#include "error.h"
+#include "scl/error.h"
 
 char *scl_error_to_str(SclError err) {
   switch (err) {

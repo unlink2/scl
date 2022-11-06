@@ -1,8 +1,8 @@
-#include "sclstrbuf.h"
-#include "macros.h"
+#include "scl/sclstrbuf.h"
+#include "scl/macros.h"
 #include <stdlib.h>
 #include <string.h>
-#include "sclmem.h"
+#include "scl/sclmem.h"
 
 StrBuffer strbuf_init_alloc(usize len, SclAlloc alloc) {
   StrBuffer buffer;
@@ -66,7 +66,7 @@ void strbuf_free(StrBuffer *buffer) {
 
 #ifdef TEST
 
-#include "macros.h"
+#include "scl/macros.h"
 
 void test_strbuf_resize(void **state) {
   StrBuffer b = strbuf_init(4);

@@ -20,7 +20,7 @@
  * to detect out of bounds writes!
  */
 
-#include "types.h"
+#include "scl/types.h"
 
 #define malloc(n) debug_malloc(n, __FILE__, __LINE__)
 #define free(n) debug_free(n, __FILE__, __LINE__)

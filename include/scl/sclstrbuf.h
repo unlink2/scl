@@ -1,10 +1,10 @@
 #ifndef SCLBUFFER_H_
 #define SCLBUFFER_H_
 
-#include "error.h"
-#include "sclalloc.h"
-#include "sclstr.h"
-#include "types.h"
+#include "scl/error.h"
+#include "scl/sclalloc.h"
+#include "scl/sclstr.h"
+#include "scl/types.h"
 
 // A buffer is an expanding wrapper
 // around Str that allows auto-resizing

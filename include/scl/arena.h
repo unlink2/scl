@@ -1,8 +1,8 @@
 #ifndef ARENA_H_
 #define ARENA_H_
 
-#include "scl.h"
-#include "types.h"
+#include "scl/scl.h"
+#include "scl/types.h"
 
 /**
  * SclArena allocator

@@ -9,7 +9,7 @@
 
 #include <stdio.h>
 
-int main(int argc, char **argv) {
+int scl_test_main(int argc, char **argv) {
   printf("Hello world!\n");
   return 0;
 }
@@ -22,7 +22,7 @@ int main(int argc, char **argv) {
  */
 #ifdef TEST
 
-#include "scl.h"
+#include "scl/scl.h"
 
 int main(int argc, char **argv) {
   const struct CMUnitTest tests[] = {cmocka_unit_test(test_strbuf_resize),

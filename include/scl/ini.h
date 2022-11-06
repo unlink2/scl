@@ -1,8 +1,8 @@
 #ifndef INI_H_
 #define INI_H_
 
-#include "sclstr.h"
-#include "error.h"
+#include "scl/sclstr.h"
+#include "scl/error.h"
 
 typedef struct SclIni SclIni;
 typedef int (*SclOnIniVal)(SclIni *ini, Str key, Str val);

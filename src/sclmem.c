@@ -1,4 +1,4 @@
-#include "sclmem.h"
+#include "scl/sclmem.h"
 #include <string.h>
 
 void *scl_memcpy(void *dest, const void *src, usize n) {

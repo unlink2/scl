@@ -1,4 +1,4 @@
-#include "ini.h"
+#include "scl/ini.h"
 #include <ctype.h>
 
 bool is_end(char c) { return c == '\0' || c == '\n' || c == '\r'; }
@@ -135,7 +135,7 @@ SclIniRes scl_ini_next(SclIni *ini, Str data) {
 #ifdef TEST
 
 #include <string.h>
-#include "macros.h"
+#include "scl/macros.h"
 
 typedef struct TestSclIni {
   SclIni ini;

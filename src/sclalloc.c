@@ -1,4 +1,4 @@
-#include "sclalloc.h"
+#include "scl/sclalloc.h"
 #include <stdlib.h>
 
 SclAlloc scl_alloc_init(SclMalloc malloc, SclFree free) {

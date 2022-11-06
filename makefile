@@ -5,7 +5,7 @@ CC=gcc
 
 BIN_INSTALL_DIR := /usr/local/bin
 LIB_INSTALL_DIR := /usr/local/lib 
-INC_INSTALL_DIR := /usr/local/include/$(NAME)/
+INC_INSTALL_DIR := /usr/local/include/
 
 # valid inputs: bin, a (static lib), so (shared lib), h (header only)
 TYPE := so

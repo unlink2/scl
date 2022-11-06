@@ -1,9 +1,9 @@
 #ifndef SCLSTR_H_
 #define SCLSTR_H_
 
-#include "sclalloc.h"
-#include "types.h"
-#include "error.h"
+#include "scl/sclalloc.h"
+#include "scl/types.h"
+#include "scl/error.h"
 
 typedef struct Str {
   char *raw;

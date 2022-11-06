@@ -1,7 +1,7 @@
 #ifndef SCL_ALLOC_H_
 #define SCL_ALLOC_H_
 
-#include "types.h"
+#include "scl/types.h"
 
 typedef void *(*SclMalloc)(usize);
 typedef void (*SclFree)(void *);
