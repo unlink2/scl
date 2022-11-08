@@ -20,7 +20,7 @@ void *scl_in();
 
 #define scl_log_(level, ...) scl_log_fprintf(sclerr, level, __VA_ARGS__)
 #define scl_log_debug(...) scl_log_(DEBUG, __VA_ARGS__)
-#define scl_log_output(...) scl_log_(OUTPUT, __VA_ARGS__)
+#define scl_log_output(...) scl_log_fprintf(sclout, OUTPUT, __VA_ARGS__)
 #define scl_log_info(...) scl_log_(INFO, __VA_ARGS__)
 #define scl_log_error(...) scl_log_(ERROR, __VA_ARGS__)
 
