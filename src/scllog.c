@@ -22,3 +22,5 @@ int scl_log_fprintf(void *f, const LogLevel level, const char *format, ...) {
 void *scl_err() { return stderr; }
 void *scl_out() { return stdout; }
 void *scl_in() { return stdin; }
+
+int scl_putchar(char c) { return putchar(c); }

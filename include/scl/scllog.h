@@ -14,6 +14,8 @@ void scl_log_set_level(LogLevel level);
 
 int scl_log_fprintf(void *f, const LogLevel level, const char *format, ...);
 
+int scl_putchar(char c);
+
 void *scl_err();
 void *scl_out();
 void *scl_in();
