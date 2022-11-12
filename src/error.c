@@ -1,4 +1,5 @@
 #include "scl/error.h"
+#include "scl/types.h"
 
 char *scl_error_to_str(SclError err) {
   switch (err) {
@@ -7,7 +8,7 @@ char *scl_error_to_str(SclError err) {
   case SCL_ERR_FILE_OPEN:
     return "File open error";
   case SCL_OK:
-    return "";
+    return NULL;
   default:
     return "Unknown error";
   }
