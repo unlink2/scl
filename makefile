@@ -5,10 +5,10 @@ CC=gcc
 
 BIN_INSTALL_DIR := /usr/local/bin
 LIB_INSTALL_DIR := /usr/local/lib 
-INC_INSTALL_DIR := /usr/local/include/
+INC_INSTALL_DIR := /usr/local/include/$(NAME)/
 
 # valid inputs: bin, a (static lib), so (shared lib), h (header only)
-TYPE := so
+TYPE := bin
 
 # configure how scl should be used 
 SCL_INC := # scl/include  
@@ -43,7 +43,7 @@ INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
 # The -MMD and -MP flags together generate Makefiles for us!
 # These files will have .d instead of .o as the output.
-CFLAGS := $(INC_FLAGS) -MMD -MP -Wall -Wpedantic -g $(EX_CC_FLAGS) -DTYPE=$(TYPE) -fPIC
+CFLAGS := $(INC_FLAGS) -MMD -MP -Wall -Wpedantic -g $(EX_CC_FLAGS) -DTYPE=$(TYPE)
 
 LDFLAGS := $(EX_LD_FLAGS) $(SCL_LIB) 
 
@@ -56,7 +56,7 @@ else  ifeq ($(TYPE), so)
 	$(CC) -shared $(OBJS) -o $@ $(LDFLAGS)
 else  ifeq ($(TYPE), h)
 	$(CC) -E $(INC_DIRS)/$(TARGET_EXEC) > $(BUILD_DIR)/$(TARGET_EXEC)  
-else
+else 
 	$(CC) $(OBJS) -o $@ $(LDFLAGS)
 endif 
 
@@ -114,6 +114,18 @@ lint:
 .PHONY: clean
 clean:
 	rm -rf $(BUILD_DIR)
+
+.PHONY: setup
+setup:
+	make getmods
+
+# get submodules
+.PHONY: getmods 
+getmods:
+	git submodule update --recursive --remote
+.PHONY: updatemods
+updatemods:	
+	git pull --recurse-submodules
 
 # installs the binary, shared library or static library  
 .PHONY: install 
